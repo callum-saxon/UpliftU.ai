@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat>
+  <v-app-bar class="background" flat>
     <v-app-bar-title>
       <v-icon icon="mdi-circle-slice-6" />
 
@@ -11,3 +11,11 @@
 <script lang="ts" setup>
   //
 </script>
+
+<style>
+.background {
+  background: transparent !important;
+  box-shadow: none !important;
+  height: 60px;
+}
+</style>
