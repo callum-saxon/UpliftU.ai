@@ -1,58 +1,66 @@
 <template>
   <v-container class="gpt-container">
-  <v-container class="chat-container">
-    <v-row class="chat-messages">
-      <!-- User messages -->
-      <v-col v-for="(message, index) in userMessages" :key="index" class="user-message">
-        {{ message }}
-      </v-col>
+    <v-container class="chat-container">
+      <v-row class="chat-messages">
+        <!-- User messages -->
+        <v-col v-for="(message, index) in userMessages" :key="index" class="user-message">
+          {{ message }}
+        </v-col>
 
-      <!-- ChatGPT messages -->
-      <v-col v-for="(message, index) in chatGptMessages" :key="index" class="chatgpt-message">
-        {{ message }}
-      </v-col>
-    </v-row>
+        <!-- ChatGPT messages -->
+        <v-col v-for="(message, index) in chatGptMessages" :key="index" class="chatgpt-message">
+          {{ message }}
+        </v-col>
+      </v-row>
 
-    <v-row class="input-row">
-      <v-col>
-        <v-text-field v-model="currentMessage" label="Need any help? Send a message!" variant="outlined"></v-text-field>
-      </v-col>
-      <v-col>
-        <v-btn @click="sendMessage">Send</v-btn>
-        <v-btn @click="startVoiceInput">Voice Input</v-btn>
-      </v-col>
-    </v-row>
+      <v-row class="input-row">
+        <v-col>
+          <v-text-field v-model="currentMessage" label="Need any help? Send a message!" variant="outlined"></v-text-field>
+        </v-col>
+        <v-col>
+          <v-btn @click="sendMessage">Send</v-btn>
+          <v-btn @click="startVoiceInput">Voice Input</v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-container>
-</v-container>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
 
 const userMessages = ref([]);
 const chatGptMessages = ref([]);
 const currentMessage = ref('');
 
-const sendMessage = () => {
+const sendMessage = async () => {
   if (currentMessage.value) {
     userMessages.value.push(currentMessage.value);
-    // Call OpenAI API here to get the response and push it to chatGptMessages
-    chatGptMessages.value.push('ChatGPT response'); // Replace with the actual response
+    
+    // Call the backend API to get the response
+    const systemBehaviour = "Your desired system behavior here";
+    const response = await axios.post('/api/get_response', {
+      prompt: currentMessage.value,
+      systemBehaviour: systemBehaviour,
+    });
+
+    chatGptMessages.value.push(response.data);
+
     currentMessage.value = '';
   }
 };
 
 const startVoiceInput = () => {
-  // Implement voice input logic here
   console.log('Voice input started');
 };
 </script>
 
 <style scoped>
-
 .gpt-container {
   height: 100%;
 }
+
 .chat-container {
   display: flex;
   flex-direction: column;
