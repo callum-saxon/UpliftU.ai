@@ -1,9 +1,7 @@
 <template>
   <v-app-bar class="background" flat>
     <v-app-bar-title>
-      <v-icon icon="mdi-circle-slice-6" />
-
-      Essentials Preset
+      <h1>> Menu</h1>
     </v-app-bar-title>
   </v-app-bar>
 </template>
@@ -13,9 +11,9 @@
 </script>
 
 <style>
-.background {
-  background: transparent !important;
-  box-shadow: none !important;
-  height: 60px;
-}
+  .background {
+    background: transparent !important;
+    box-shadow: none !important;
+    height: 60px;
+  }
 </style>

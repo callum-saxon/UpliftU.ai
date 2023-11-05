@@ -4,18 +4,16 @@
  * Framework documentation: https://vuetifyjs.com`
  */
 
-// Styles
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
-
-// Composables
 import { createApp } from 'vue'
 import { createVuetify, ThemeDefinition } from 'vuetify'
 
 const myCustomLightTheme = {
   dark: false,
   colors: {
-    background: '#FFFFFF',
+    background: '#121212',
+    color: '#121212',
     surface: '#FFFFFF',
     primary: '#6200EE',
     'primary-darken-1': '#3700B3',
