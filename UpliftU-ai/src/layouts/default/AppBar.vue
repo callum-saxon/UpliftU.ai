@@ -1,7 +1,11 @@
 <template>
   <v-app-bar class="background" flat>
     <v-app-bar-title>
-      <h1>> Menu</h1>
+      <v-img
+  :width="225"
+  cover
+  src="@/assets/logo.png"
+></v-img>
     </v-app-bar-title>
   </v-app-bar>
 </template>

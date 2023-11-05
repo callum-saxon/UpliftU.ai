@@ -19,8 +19,8 @@
                 <Info/>
               </v-window-item>
 
-              <v-window-item value="projects" class="projects">
-                <Projects/>
+              <v-window-item value="chat" class="chat">
+                <Chat/>
               </v-window-item>
             </v-window>
           </v-card-text>
@@ -32,14 +32,14 @@
 
 <script lang="ts">
 import Info from "@/components/Info.vue";
-import Projects from "@/components/Projects.vue";
+import Chat from "@/components/Chat.vue";
 
 export default {
   data: () => ({
     tab: 'info',
     menuItems: [
       { text: 'Info', value: 'info' },
-      { text: 'Projects', value: 'projects' },
+      { text: 'Chat', value: 'chat' },
     ],
   }),
   methods: {
@@ -49,7 +49,7 @@ export default {
   },
   components: {
     Info,
-    Projects,
+    Chat,
   },
 }
 </script>
@@ -57,13 +57,13 @@ export default {
 <style scoped>
 .page {
   background: transparent;
-  height: 600px;
+  height: 100%;
   box-shadow: none;
 }
 
 
-.projects,
-.info {
+.info,
+.chat {
   background: transparent;
   box-shadow: none !important;
   height: 80vh;
