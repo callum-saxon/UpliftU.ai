@@ -38,7 +38,6 @@ const sendMessage = async () => {
   if (currentMessage.value) {
     userMessages.value.push(currentMessage.value);
     
-    // Call the backend API to get the response
     const systemBehaviour = "Your desired system behavior here";
     const response = await axios.post('/api/get_response', {
       prompt: currentMessage.value,
