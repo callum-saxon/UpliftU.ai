@@ -1,29 +1,32 @@
 <template>
   <v-container>
-    <v-responsive class="align-center text-center">
-      <v-card class="page">
-        <v-card-text>
-          <v-window v-model="tab">
-            <v-window-item value="info" class="info">
-              <Info/>
-            </v-window-item>
+    <v-row>
+      <v-navigation-drawer app style="background: transparent">
+        <v-list>
+          <v-list-item v-for="(item, index) in menuItems" :key="index" @click="changeTab(item.value)">
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
 
-            <v-window-item value="projects" class="projects">
-              <Projects/>
-            </v-window-item>
-          </v-window>
-        </v-card-text>
-      </v-card>
-      <v-row class="tabs-container">
-        <v-col class="d-flex justify-center" style="position: absolute; bottom: 0; width: 100%;">
-          <v-tabs v-model="tab" style="background: transparent;">
-            <v-tab value="info">// Info.</v-tab>
-            <v-tab value="projects">// Chat.
-            </v-tab>
-          </v-tabs>
-        </v-col>
-      </v-row>
-    </v-responsive>
+      <v-col>
+        <v-card class="page">
+          <v-card-text>
+            <v-window v-model="tab">
+              <v-window-item value="info" class="info">
+                <Info/>
+              </v-window-item>
+
+              <v-window-item value="projects" class="projects">
+                <Projects/>
+              </v-window-item>
+            </v-window>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -33,8 +36,17 @@ import Projects from "@/components/Projects.vue";
 
 export default {
   data: () => ({
-    tab: 'Info',
+    tab: 'info',
+    menuItems: [
+      { text: 'Info', value: 'info' },
+      { text: 'Projects', value: 'projects' },
+    ],
   }),
+  methods: {
+    changeTab(value: string) {
+      this.tab = value;
+    },
+  },
   components: {
     Info,
     Projects,
