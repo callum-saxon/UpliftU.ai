@@ -39,6 +39,10 @@
           <v-window-item value="my-uplift" class="my-uplift">
             <MyUplift />
           </v-window-item>
+
+          <v-window-item value="contact-us" class="contact-us">
+            <ContactUs />
+          </v-window-item>
         </v-window>
       </v-col>
     </v-row>
@@ -49,6 +53,7 @@
 import Info from "@/components/Info.vue";
 import Chat from "@/components/Chat.vue";
 import MyUplift from "@/components/My-Uplift.vue";
+import ContactUs from "@/components/Contact-us.vue";
 
 export default {
   data: () => ({
@@ -80,7 +85,8 @@ export default {
     Info,
     Chat,
     MyUplift,
-  },
+    ContactUs
+},
 };
 </script>
 

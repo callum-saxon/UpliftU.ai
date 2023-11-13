@@ -4,7 +4,7 @@
       <v-col cols="12" md="6">
         <div class="header-column">
           <h1 class="headline">PURPOSE OF UPLIFTU</h1>
-          <h2 class="subtitle-1 purpose-text">
+          <h2 class="purpose-text">
             Enhancing mental well-being with empathetic AI support.
           </h2>
           <h2 class="body-1">
@@ -12,7 +12,7 @@
             make the world and their work more efficient, but we for one don't
             want to live in a world where AI is focused so much on making you so
             efficient, and yet it doesn't understand how you feel or what
-            motivates you. This is what we're focused on with UpliftU.ai
+            motivates you. <br> <br> <br> - This is what we're focused on with UpliftU.ai
           </h2>
         </div>
         <v-btn
@@ -39,16 +39,13 @@
       <v-col v-for="(card, index) in cards" :key="index" cols="12" md="4">
         <div class="card">
           <div class="card-details">
+            <span class="card-number">0{{ index + 1 }}.</span>
             <p class="text-body">
-              <span class="card-number">0{{ index + 1 }}.</span>
               {{ card.details }}
             </p>
           </div>
         </div>
       </v-col>
-    </v-row>
-    <v-row>
-      <v-col> </v-col>
     </v-row>
   </v-container>
 </template>
@@ -81,19 +78,20 @@ const cards = [
 }
 
 .headline {
-  font-size: 1.2rem;
+  font-size: 1.2rem !important;
   padding-bottom: 2rem;
 }
 
 .purpose-text {
   font-size: 2.5rem;
   font-weight: 500;
-  padding-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .body-1 {
   font-size: 1.2rem;
-  font-weight: 300;
+  font-weight: 200;
+  font-style: italic;
   margin-bottom: 4rem;
 }
 
@@ -122,22 +120,22 @@ const cards = [
 }
 
 .text-body {
-  font-size: 1.5rem;
+  font-size: 1.2rem !important;
   display: flex;
 }
 
 .card-number {
-  font-size: 1.5rem;
+  font-size: 1.8rem !important;
   font-weight: bold;
 }
 
 @media only screen and (max-width: 600px) {
   .headline {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   .purpose-text {
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
 
   .body-1 {
@@ -150,6 +148,10 @@ const cards = [
 
   .card-number {
     font-size: 1.5rem;
+  }
+
+  .horizontal-scrollingb {
+    font-size: 1rem;
   }
 }
 </style>

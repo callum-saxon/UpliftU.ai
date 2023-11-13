@@ -98,17 +98,17 @@ const handleResize = () => {
 .fade-in {
   animation: fadeIn 1.5s ease-out;
   opacity: 0;
-  animation-fill-mode: forwards; /* Maintain the final state of the animation */
+  animation-fill-mode: forwards;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px); /* Start 20px below its normal position */
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0); /* End at its normal position */
+    transform: translateY(0);
   }
 }
 </style>

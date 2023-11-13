@@ -1,105 +1,86 @@
 <template>
-  <v-container class="gpt-container">
-    <v-container class="chat-container">
-      <v-row class="chat-messages">
-        <!-- User messages -->
-        <v-col v-for="(message, index) in userMessages" :key="index" class="user-message">
-          {{ message }}
-        </v-col>
+  <v-container class="gpt-container" v-scroll-to-bottom="scrollOptions">
+    <template>
+      <v-dialog max-width="400" persistent>
+        <v-card>
+          <v-card-title class="headline">API Not Connected</v-card-title>
+          <v-card-text>
+            This is a incomplete model. Please update the API key with a valid
+            key to use the chat functionality.
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    </template>
 
-        <!-- ChatGPT messages -->
-        <v-col v-for="(message, index) in chatGptMessages" :key="index" class="chatgpt-message">
-          {{ message }}
-        </v-col>
-      </v-row>
-
-      <v-row class="input-row">
-        <v-col>
-          <v-text-field v-model="currentMessage" label="Need any help? Send a message!" variant="outlined"></v-text-field>
-        </v-col>
-        <v-col>
-          <v-btn @click="sendMessage">Send</v-btn>
-          <v-btn @click="startVoiceInput">Voice Input</v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
+    <v-row>
+      <v-col class="input-row">
+        <v-text-field
+          v-model="currentMessage"
+          label="Need any help? Send a message!"
+          variant="outlined"
+          append-icon="mdi-send"
+          @click:append="sendMessage"
+          @keyup.enter="sendMessage"
+          ref="messageInput"
+        ></v-text-field>
+        <v-btn rounded="xl" @click="startVoiceInput">
+          <v-icon>mdi-microphone</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import axios from 'axios';
-
-const userMessages = ref([]);
-const chatGptMessages = ref([]);
-const currentMessage = ref('');
-
-const sendMessage = async () => {
-  if (currentMessage.value) {
-    userMessages.value.push(currentMessage.value);
-    
-    const systemBehaviour = "Your desired system behavior here";
-    const response = await axios.post('/api/get_response', {
-      prompt: currentMessage.value,
-      systemBehaviour: systemBehaviour,
-    });
-
-    chatGptMessages.value.push(response.data);
-
-    currentMessage.value = '';
-  }
-};
+import { ref, onMounted, computed } from "vue";
+import axios from "axios";
 
 const startVoiceInput = () => {
-  console.log('Voice input started');
+  console.log("Voice input started");
 };
+
+const scrollOptions = ref({
+  container: ".chat-container",
+});
+
+onMounted(() => {
+  scrollOptions.value = { container: ".chat-container", duration: 0 };
+});
 </script>
 
 <style scoped>
 .gpt-container {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.chat-messages {
   flex-grow: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
-.user-message {
-  align-self: flex-end;
-  background-color: #e2f0cb;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.chatgpt-message {
-  align-self: flex-start;
-  background-color: #d9d9d9;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 8px;
+.chat-messages {
+  display: flex;
+  flex-direction: column;
 }
 
 .input-row {
   display: flex;
   align-items: center;
-  margin-top: auto;
+  justify-content: space-around;
+  padding: 10px;
+  margin-top: 700px;
+  bottom: 0;
 }
 
 .v-text-field {
-  width: 100%;
+  width: 70%;
 }
 
 .v-btn {
-  width: 100px;
+  background-color: #7164fc;
 }
 </style>
