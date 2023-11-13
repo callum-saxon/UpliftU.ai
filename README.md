@@ -1,1 +1,1 @@
-# UpliftU-ai
+# UpliftU.ai
