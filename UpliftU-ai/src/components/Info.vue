@@ -12,7 +12,10 @@
             make the world and their work more efficient, but we for one don't
             want to live in a world where AI is focused so much on making you so
             efficient, and yet it doesn't understand how you feel or what
-            motivates you. <br> <br> <br> - This is what we're focused on with UpliftU.ai
+            motivates you. <br />
+            <br />
+            <br />
+            - This is what we're focused on with UpliftU.ai
           </h2>
         </div>
         <v-btn
@@ -33,7 +36,6 @@
           src="@/assets/chat_bot.svg"
           alt="Chat Bot Image"
           class="responsive-image"
-        />
       </v-col>
 
       <v-col v-for="(card, index) in cards" :key="index" cols="12" md="4">
@@ -97,7 +99,7 @@ const cards = [
 
 .card {
   width: 100%;
-  height: 100%;
+  height: fit-content;
   padding: 1.8rem;
   background: rgba(201, 201, 201, 0.25);
   border-radius: 16px;
